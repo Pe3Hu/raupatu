@@ -15,11 +15,17 @@ var mouse_pressed = false
 
 
 func init_num() -> void:
+	num.index = {}
+	num.index.knopf = 0
+	
 	num.leinwand = {}
 	num.leinwand.n = 10
 	num.leinwand.rows = num.leinwand.n
 	num.leinwand.cols = num.leinwand.n
-	num.leinwand.a = 64
+	num.leinwand.a = 72
+	
+	num.delta = {}
+	num.delta.max = 12
 
 
 func init_dict() -> void:
@@ -52,6 +58,7 @@ func init_arr() -> void:
 	arr.sequence["A001358"] = [4, 6, 9, 10, 14, 15, 21, 22, 25, 26]
 	arr.sequence["B000000"] = [2, 3, 5, 8, 10, 13, 17, 20, 24, 29, 33, 38]
 	arr.color = ["Red","Green","Blue","Yellow"]
+	arr.delta = [3,4,5,6,7,8,9]#[2,3,4,5,6,7,8,9,10]
 
 
 func init_node() -> void:
@@ -97,4 +104,10 @@ func get_random_element(arr_: Array):
 	return arr_[index_r]
 
 
-
+func split_two_point(points_: Array, delta_: float):
+	var a = points_.front()
+	var b = points_.back()
+	var x = (a.x+b.x*delta_)/(1+delta_)
+	var y = (a.y+b.y*delta_)/(1+delta_)
+	var point = Vector2(x, y)
+	return point

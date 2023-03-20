@@ -1,9 +1,6 @@
 extends Node
 
 
-
-
-
 class Sorter:
 	static func sort_ascending(a, b):
 		if a.value < b.value:
