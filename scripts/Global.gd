@@ -48,6 +48,21 @@ func init_dict() -> void:
 		Vector2( 1, 1),
 		Vector2( 0, 1)
 	]
+	
+	dict.klappe = {}
+	dict.klappe.size = {
+		1: [["corner"], ["center"]],
+		2: [["corner", "corner"], ["corner", "center"], ["center", "center"]],
+		3: [["corner", "corner", "center"], ["corner", "center", "center"]],
+		4: [["corner", "corner", "corner", "corner"]]
+	}
+	dict.klappe.duplicate = {
+		1: 8,
+		2: 4,
+		3: 2,
+		4: 1
+	}
+	
 
 
 func init_arr() -> void:

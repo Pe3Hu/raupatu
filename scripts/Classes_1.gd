@@ -96,8 +96,10 @@ class Klappe:
 	func _init(input_) -> void:
 		arr.knopf = input_.knopfs
 		obj.leinwand = input_.leinwand
+		obj.bletz = null
 		dict.neighbor = {}
 		word.color = "White"
+		word.type = input_.type
 		init_schlitzs()
 
 
@@ -157,27 +159,59 @@ class Klappe:
 		obj.leinwand.scene.myself.get_node("Klappes").add_child(polygon)
 
 
-	func cut() -> void:
-		var knopfs = []
-#		var schlitzs = []
-#		schlitzs.append_array(dict.neighbor.keys())
-#		var schlitz = Global.get_random_element(schlitzs)
-#		var first = schlitz.cut()
-#		knopfs.append(first)
-#		schlitzs.erase(schlitz)
-#		schlitz = Global.get_random_element(schlitzs)
-#		var second = schlitz.cut()
-#		knopfs.append(second)
+#заплатка
+class Bletz:
+	var arr = {}
+	var dict ={}
+	var word = {}
+	var obj = {}
+
+
+	func _init(input_) -> void:
+		arr.knopf = []
+		arr.klappe = input_.klappes
+		obj.leinwand = input_.leinwand
+		dict.neighbor = {}
+		word.color = "White"
+		set_knopfs()
+
+
+	func set_knopfs() -> void:
+		for klappe in arr.klappe:
+			klappe.obj.bletz = self
+			
+			for knopf in klappe.arr.knopf:
+				if !arr.knopf.has(knopf):
+					arr.knopf.append(knopf)
+
+
+	func connect_klappes() -> void:
+		var schlitzs = {}
 		
-#		var input = {}
-#		input.leinwand = obj.leinwand
-#		input.knopfs = knopfs
-#		schlitz = Classes_1.Schlitz.new(input)
-#		obj.leinwand.dict.schlitz[first] = {}
-#		obj.leinwand.dict.schlitz[first][second] = schlitz
-#		obj.leinwand.dict.schlitz[second] = {}
-#		obj.leinwand.dict.schlitz[second][first] = schlitz
-		pass
+		for klappe in arr.klappe:
+			for schlitz in klappe.dict.neighbor.keys():
+				if !schlitzs.keys().has(schlitz):
+					schlitzs[schlitz] = 1
+				else:
+					schlitzs[schlitz] += 1
+		
+		for schlitz in schlitzs.keys():
+			if schlitzs[schlitz] == 1:
+				for klappe in arr.klappe:
+					if klappe.dict.neighbor.keys().has(schlitz):
+						var neighbor = klappe.dict.neighbor[schlitz].obj.bletz
+						dict.neighbor[schlitz] = neighbor
+						neighbor.dict.neighbor[schlitz] = self
+
+
+	func paint_klappes() -> void:
+		for klappe in arr.klappe:
+			klappe.word.color = word.color
+
+
+	func init_polygon() -> void:
+		for klappe in arr.klappe:
+			klappe.init_polygon()
 
 
 #полотно
@@ -194,6 +228,7 @@ class Leinwand:
 		init_knopfs()
 		init_klappes()
 		add_new_schlitzs()
+		glue_klappes()
 
 
 	func init_knopfs() -> void:
@@ -217,6 +252,7 @@ class Leinwand:
 			if key.x < border.x && key.y < border.y:
 				var input = {}
 				input.leinwand = self
+				input.type = "square"
 				input.knopfs = []
 				
 				for neighbor in Global.dict.neighbor.zero:
@@ -278,6 +314,7 @@ class Leinwand:
 								var input = {}
 								input.leinwand = self
 								input.knopfs = [knopf,first,second]
+								input.type = "corner"
 								var klappe = Classes_1.Klappe.new(input)
 								arr.klappe.append(klappe)
 				"edge":
@@ -316,32 +353,88 @@ class Leinwand:
 				var input = {}
 				input.leinwand = self
 				input.knopfs = trio
+				input.type = "center"
 				var klappe = Classes_1.Klappe.new(input)
 				arr.klappe.append(klappe)
 		
-		
 		set_klappe_neighbors()
-		set_klappe_colors()
 
 
-	func set_klappe_colors() -> void:
-		var origin = arr.klappe[0]
+	func glue_klappes() -> void:
+		arr.bletz = []
+		var unglueds = []
+		var glueds = []
+		unglueds.append_array(arr.klappe)
+		
+		while unglueds.size() > 0:
+			var klappes = []
+			var current_klappe = Global.get_random_element(unglueds)
+			var options = []
+			
+			for size in Global.dict.klappe.size.keys():
+				for types in Global.dict.klappe.size[size]:
+					if types.has(current_klappe.word.type):
+						for _i in Global.dict.klappe.duplicate[size]:
+							options.append(types)
+			
+			var types = []
+			types.append_array(Global.get_random_element(options))
+			klappes.append(current_klappe)
+			unglueds.erase(current_klappe)
+			types.erase(current_klappe.word.type)
+			
+			while types.size() > 0:
+				var neighbors = []
+				
+				for klappe in klappes:
+					for schlitz in klappe.dict.neighbor.keys():
+						var neighbor = klappe.dict.neighbor[schlitz]
+						
+						if unglueds.has(neighbor) && types.has(neighbor.word.type):
+							neighbors.append(neighbor)
+				
+				if neighbors.size() == 0:
+					types = []
+				else:
+					current_klappe = Global.get_random_element(neighbors)
+					klappes.append(current_klappe)
+					unglueds.erase(current_klappe)
+					types.erase(current_klappe.word.type)
+			
+			glueds.append(klappes)
+		
+		for glued in glueds:
+			var input = {}
+			input.klappes = glued
+			input.leinwand = self
+			var bletz = Classes_1.Bletz.new(input)
+			arr.bletz.append(bletz)
+		
+		for bletz in arr.bletz:
+			bletz.connect_klappes()
+		
+		set_bletz_colors()
+
+
+	func set_bletz_colors() -> void:
+		var origin = arr.bletz[0]
 		var unpainted = [origin]
 		
 		while unpainted.size() > 0:
-			var klappe = unpainted.pop_front()
+			var bletz = unpainted.pop_front()
 			var colors = []
 			colors.append_array(Global.arr.color)
 			
-			for schlitz in klappe.dict.neighbor.keys():
-				var neighbor = klappe.dict.neighbor[schlitz]
+			for schlitz in bletz.dict.neighbor.keys():
+				var neighbor = bletz.dict.neighbor[schlitz]
 				colors.erase(neighbor.word.color)
 				
 				if neighbor.word.color == "White" && !unpainted.has(neighbor):
 					unpainted.append(neighbor)
 			
-			klappe.word.color = Global.get_random_element(colors)
+			bletz.word.color = Global.get_random_element(colors)
+			bletz.paint_klappes()
 		
-		for klappe in arr.klappe:
-			klappe.init_polygon()
+		for bletz in arr.bletz:
+			bletz.init_polygon()
 

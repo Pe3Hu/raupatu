@@ -1,7 +1,6 @@
-res://scenes/schlitz/schlitz.tscn
-res://scripts/Classes_0.gd
 res://scenes/game/Game.tscn
 res://scenes/leinwand/leinwand.tscn
 res://scenes/knopf/knopf.tscn
+res://scenes/schlitz/schlitz.tscn
 res://scripts/Classes_1.gd
 res://scripts/Global.gd
