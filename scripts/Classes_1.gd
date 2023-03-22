@@ -52,6 +52,9 @@ class Schlitz:
 	func add_klappe(klappe_) -> void:
 		if !arr.klappe.has(klappe_):
 			arr.klappe.append(klappe_)
+		
+		if !klappe_.arr.schlitz.has(self):
+			klappe_.arr.schlitz.append(self)
 
 
 	func cut():
@@ -96,6 +99,7 @@ class Klappe:
 	func _init(input_) -> void:
 		num.square = 0
 		arr.knopf = input_.knopfs
+		arr.schlitz = []
 		obj.leinwand = input_.leinwand
 		obj.bletz = null
 		dict.neighbor = {}
@@ -183,6 +187,7 @@ class Bletz:
 		obj.leinwand = input_.leinwand
 		obj.lager = null
 		dict.neighbor = {}
+		dict.zugang = {}
 		word.color = "White"
 		set_knopfs()
 
@@ -293,6 +298,7 @@ class Leinwand:
 		glue_klappes()
 		calc_klappe_squares()
 		set_lagers()
+		init_zugangs()
 
 
 	func init_knopfs() -> void:
@@ -531,3 +537,28 @@ class Leinwand:
 	func set_lagers() -> void:
 		for bletz in arr.bletz:
 			bletz.set_lager()
+
+
+	func init_zugangs() -> void:
+		for bletz in arr.bletz:
+			var schlitzs = []
+			
+			for klappe in bletz.arr.klappe:
+				for schlitz in klappe.arr.schlitz:
+					if schlitz.arr.knopf.front().word.type != schlitz.arr.knopf.back().word.type:
+						if !schlitzs.has(schlitz):
+							schlitzs.append(schlitz)
+						else:
+							schlitzs.erase(schlitz)
+			
+			for schlitz in bletz.dict.neighbor.keys():
+				if !schlitzs.has(schlitz):
+					schlitzs.append(schlitz)
+			
+			for schlitz in schlitzs:
+				var input = {}
+				input.schlitz = schlitz
+				input.lager = bletz.obj.lager
+				input.leinwand = self
+				var zugang = Classes_2.Zugang.new(input)
+				bletz.dict.zugang[schlitz] = zugang

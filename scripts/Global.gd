@@ -19,7 +19,7 @@ func init_num() -> void:
 	num.index.knopf = 0
 	
 	num.leinwand = {}
-	num.leinwand.n = 5
+	num.leinwand.n = 2
 	num.leinwand.rows = num.leinwand.n
 	num.leinwand.cols = num.leinwand.n
 	num.leinwand.a = 144
@@ -96,7 +96,9 @@ func init_vec() -> void:
 func init_scene() -> void:
 	scene.knopf = load("res://scenes/knopf/Knopf.tscn")
 	scene.schlitz = load("res://scenes/schlitz/Schlitz.tscn")
+	scene.zugang = load("res://scenes/zugang/Zugang.tscn")
 	scene.leinwand = load("res://scenes/leinwand/Leinwand.tscn")
+	
 
 
 func _ready() -> void:

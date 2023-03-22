@@ -4,3 +4,5 @@ res://scenes/knopf/knopf.tscn
 res://scenes/schlitz/schlitz.tscn
 res://scripts/Classes_1.gd
 res://scripts/Global.gd
+res://scripts/Classes_2.gd
+res://scenes/zugang/zugang.tscn
