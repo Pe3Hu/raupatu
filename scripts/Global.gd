@@ -19,10 +19,10 @@ func init_num() -> void:
 	num.index.knopf = 0
 	
 	num.leinwand = {}
-	num.leinwand.n = 10
+	num.leinwand.n = 5
 	num.leinwand.rows = num.leinwand.n
 	num.leinwand.cols = num.leinwand.n
-	num.leinwand.a = 72
+	num.leinwand.a = 144
 	
 	num.delta = {}
 	num.delta.max = 12

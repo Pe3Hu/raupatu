@@ -38,7 +38,6 @@ class Schlitz:
 		obj.leinwand = input_.leinwand
 		obj.leinwand.dict.schlitz[arr.knopf.front()][arr.knopf.back()] = self
 		obj.leinwand.dict.schlitz[arr.knopf.back()][arr.knopf.front()] = self
-		#init_scene()
 
 
 	func init_scene() -> void:
@@ -87,6 +86,7 @@ class Schlitz:
 
 #лоскут
 class Klappe:
+	var num = {}
 	var arr = {}
 	var dict ={}
 	var word = {}
@@ -94,6 +94,7 @@ class Klappe:
 
 
 	func _init(input_) -> void:
+		num.square = 0
 		arr.knopf = input_.knopfs
 		obj.leinwand = input_.leinwand
 		obj.bletz = null
@@ -159,8 +160,16 @@ class Klappe:
 		obj.leinwand.scene.myself.get_node("Klappes").add_child(polygon)
 
 
+	func calc_square() -> void:
+		var a = arr.knopf[0].vec.position
+		var b = arr.knopf[1].vec.position
+		var c = arr.knopf[2].vec.position
+		num.square += abs((b.x-a.x)*(c.y-a.y)-(c.x-a.x)*(b.y-a.y))/2
+
+
 #заплатка
 class Bletz:
+	var num = {}
 	var arr = {}
 	var dict ={}
 	var word = {}
@@ -168,9 +177,11 @@ class Bletz:
 
 
 	func _init(input_) -> void:
+		num.square = 0
 		arr.knopf = []
 		arr.klappe = input_.klappes
 		obj.leinwand = input_.leinwand
+		obj.lager = null
 		dict.neighbor = {}
 		word.color = "White"
 		set_knopfs()
@@ -214,6 +225,57 @@ class Bletz:
 			klappe.init_polygon()
 
 
+	func set_lager() -> void:
+		var lager_position = Vector2()
+		
+		var corner = true
+		for klappe in arr.klappe:
+			corner = klappe.word.type == "corner" && corner
+		
+		if corner && arr.klappe.size() == 4:
+			for knopf in arr.knopf:
+				if knopf.word.type == "corner":
+					obj.lager = knopf
+					break
+		else:
+			var n = arr.knopf.size()
+			var xs = []
+			var ys = []
+			var corner_positions = []
+			var same_axis = false
+			
+			for knopf in arr.knopf:
+				lager_position += knopf.vec.position
+				
+				match knopf.word.type:
+					"corner":
+						corner_positions.append(knopf.vec.position)
+					"edge":
+						if xs.has(knopf.vec.position.x):
+							same_axis = true
+						else:
+							xs.append(knopf.vec.position.x)
+						if ys.has(knopf.vec.position.y):
+							same_axis = true
+						else:
+							ys.append(knopf.vec.position.y)
+			
+			if same_axis && corner_positions.size() == 1:
+				lager_position -= corner_positions.front()
+				n -= 1
+			
+			lager_position /= n
+			
+			var input = {}
+			input.type = "lager"
+			input.leinwand = obj.leinwand
+			input.position = lager_position
+			var knopf = Classes_1.Knopf.new(input)
+			arr.knopf.append(knopf)
+			obj.leinwand.dict.knopf[lager_position] = knopf
+			obj.lager = knopf
+
+
 #полотно
 class Leinwand:
 	var arr = {}
@@ -229,6 +291,8 @@ class Leinwand:
 		init_klappes()
 		add_new_schlitzs()
 		glue_klappes()
+		calc_klappe_squares()
+		set_lagers()
 
 
 	func init_knopfs() -> void:
@@ -438,3 +502,32 @@ class Leinwand:
 		for bletz in arr.bletz:
 			bletz.init_polygon()
 
+
+	func calc_klappe_squares() -> void:
+		var s = Global.num.leinwand.a*Global.num.leinwand.a/4
+		
+		for klappe in arr.klappe:
+			klappe.calc_square()
+			klappe.obj.bletz.num.square += klappe.num.square
+		
+		var n = 6
+		
+		var counts = {}
+		
+		for _i in range(2,n*3):
+			counts[_i] = 0
+		
+		for bletz in arr.bletz:
+			var size = bletz.num.square/s*n
+			
+			for key in counts.keys():
+				if size < key:
+					counts[key] += 1
+					break
+		
+		print(counts)
+
+
+	func set_lagers() -> void:
+		for bletz in arr.bletz:
+			bletz.set_lager()
