@@ -448,7 +448,9 @@ class Leinwand:
 							options.append(types)
 			
 			var types = []
+			var origin_types = []
 			types.append_array(Global.get_random_element(options))
+			origin_types.append_array(types)
 			klappes.append(current_klappe)
 			unglueds.erase(current_klappe)
 			types.erase(current_klappe.word.type)
@@ -471,7 +473,10 @@ class Leinwand:
 					unglueds.erase(current_klappe)
 					types.erase(current_klappe.word.type)
 			
-			glueds.append(klappes)
+			if origin_types == ["corner", "corner", "corner", "corner"] && klappes.size() != origin_types.size():
+				unglueds.append_array(klappes)
+			else:
+				glueds.append(klappes)
 		
 		for glued in glueds:
 			var input = {}

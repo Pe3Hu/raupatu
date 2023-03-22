@@ -19,7 +19,7 @@ func init_num() -> void:
 	num.index.knopf = 0
 	
 	num.leinwand = {}
-	num.leinwand.n = 2
+	num.leinwand.n = 6
 	num.leinwand.rows = num.leinwand.n
 	num.leinwand.cols = num.leinwand.n
 	num.leinwand.a = 144
