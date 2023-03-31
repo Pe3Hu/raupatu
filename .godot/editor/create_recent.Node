@@ -1,9 +1,11 @@
-Line2D
+HBoxContainer
+Label
 MarginContainer
+VBoxContainer
+Line2D
 Control
 Node
 Container
 CenterContainer
 Node2D
 Sprite2D
-Label

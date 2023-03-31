@@ -2,7 +2,8 @@ extends Control
 
 
 func _ready():
-	Global.obj.leinwand = Classes_1.Leinwand.new()
+	#Global.obj.leinwand = Classes_1.Leinwand.new()
+	Global.obj.bienenstock = Classes_3.Bienenstock.new()
 #	datas.sort_custom(Classes_0.Sorter, "sort_ascending")
 
 

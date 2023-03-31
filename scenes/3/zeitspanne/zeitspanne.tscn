@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://crhnh0s3wu3th"]
+
+[node name="Zeitspanne" type="VBoxContainer"]
+theme_override_constants/separation = 0

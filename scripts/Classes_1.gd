@@ -171,6 +171,72 @@ class Klappe:
 		num.square += abs((b.x-a.x)*(c.y-a.y)-(c.x-a.x)*(b.y-a.y))/2
 
 
+#подступ
+class Zugang:
+	var obj = {}
+	var arr = {}
+	var word = {}
+	var scene = {}
+
+
+	func _init(input_) -> void:
+		obj.schlitz = input_.schlitz
+		obj.lager = input_.lager
+		obj.leinwand = input_.leinwand
+		init_knopfs()
+		init_scene()
+
+
+	func init_knopfs() -> void:
+		arr.knopf = []
+		arr.knopf.append(obj.lager)
+		arr.knopf.append_array(obj.schlitz.arr.knopf)
+		arr.knopf.append(obj.lager)
+		scene.myself = Global.scene.schlitz.instantiate()
+
+
+	func init_scene() -> void:
+		scene.myself = Global.scene.zugang.instantiate()
+		
+		for knopf in arr.knopf:
+			scene.myself.add_point(knopf.vec.position)
+		
+		obj.leinwand.scene.myself.get_node("Zugangs").add_child(scene.myself)
+
+
+	func init_polygon() -> void:
+		var vertexs = PackedVector2Array()
+		
+		for knopf in arr.knopf:
+			vertexs.append(knopf.vec.position)
+		
+		var polygon = Polygon2D.new()
+		polygon.set_polygon(vertexs)
+		
+		var h = 0.5
+		var s = 0.75
+		var v = 1
+		word.color = "Black"
+		
+		match word.color:
+			"White":
+				s = 0.0
+				v = 1.0
+			"Black":
+				v = 0.0
+			"Red":
+				h = 0.0
+			"Green":
+				h = 120/360.0
+			"Blue":
+				h = 210.0/360.0
+			"Yellow":
+				h = 60.0/360.0
+		
+		polygon.set_color(Color.from_hsv(h,s,v))
+		obj.leinwand.scene.myself.get_node("Klappes").add_child(polygon)
+
+
 #заплатка
 class Bletz:
 	var num = {}
@@ -290,8 +356,7 @@ class Leinwand:
 
 	func _init() -> void:
 		dict.schlitz = {}
-		scene.myself = Global.scene.leinwand.instantiate()
-		Global.node.game.add_child(scene.myself)
+		init_scene()
 		init_knopfs()
 		init_klappes()
 		add_new_schlitzs()
@@ -299,6 +364,11 @@ class Leinwand:
 		calc_klappe_squares()
 		set_lagers()
 		init_zugangs()
+
+
+	func init_scene() -> void:
+		scene.myself = Global.scene.leinwand.instantiate()
+		Global.node.game.add_child(scene.myself)
 
 
 	func init_knopfs() -> void:
@@ -565,5 +635,5 @@ class Leinwand:
 				input.schlitz = schlitz
 				input.lager = bletz.obj.lager
 				input.leinwand = self
-				var zugang = Classes_2.Zugang.new(input)
+				var zugang = Classes_1.Zugang.new(input)
 				bletz.dict.zugang[schlitz] = zugang

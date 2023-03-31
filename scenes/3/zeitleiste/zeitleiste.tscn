@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cgl1qxyb33ubx"]
+
+[node name="Zeitleiste" type="HBoxContainer"]
+offset_left = 60.0
+offset_top = 60.0
+offset_right = 100.0
+offset_bottom = 100.0

@@ -17,6 +17,7 @@ var mouse_pressed = false
 func init_num() -> void:
 	num.index = {}
 	num.index.knopf = 0
+	num.index.fehler = 0
 	
 	num.leinwand = {}
 	num.leinwand.n = 6
@@ -94,11 +95,13 @@ func init_vec() -> void:
 
 
 func init_scene() -> void:
-	scene.knopf = load("res://scenes/knopf/Knopf.tscn")
-	scene.schlitz = load("res://scenes/schlitz/Schlitz.tscn")
-	scene.zugang = load("res://scenes/zugang/Zugang.tscn")
-	scene.leinwand = load("res://scenes/leinwand/Leinwand.tscn")
-	
+	scene.knopf = load("res://scenes/1/knopf/Knopf.tscn")
+	scene.schlitz = load("res://scenes/1/schlitz/Schlitz.tscn")
+	scene.zugang = load("res://scenes/1/zugang/Zugang.tscn")
+	scene.leinwand = load("res://scenes/1/leinwand/Leinwand.tscn")
+	scene.fehler = load("res://scenes/3/fehler/Fehler.tscn")
+	scene.zeitspanne = load("res://scenes/3/zeitspanne/Zeitspanne.tscn")
+	scene.zeitleiste = load("res://scenes/3/zeitleiste/Zeitleiste.tscn")
 
 
 func _ready() -> void:
