@@ -102,6 +102,7 @@ func init_scene() -> void:
 	scene.fehler = load("res://scenes/3/fehler/Fehler.tscn")
 	scene.zeitspanne = load("res://scenes/3/zeitspanne/Zeitspanne.tscn")
 	scene.zeitleiste = load("res://scenes/3/zeitleiste/Zeitleiste.tscn")
+	scene.cube = load("res://scenes/3/cube/cube.tscn")
 
 
 func _ready() -> void:
