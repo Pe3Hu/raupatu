@@ -27,6 +27,16 @@ func init_num() -> void:
 	
 	num.delta = {}
 	num.delta.max = 12
+	
+	num.saal = {}
+	num.saal.height = 10
+	num.saal.width = 3
+	num.saal.depth = 7
+	
+	num.pielautomat = {}
+	num.pielautomat.height = 3
+	num.pielautomat.width = 5
+	
 
 
 func init_dict() -> void:
@@ -64,6 +74,9 @@ func init_dict() -> void:
 		4: 1
 	}
 	
+	dict.fehler = {}
+	dict.fehler.aspect = ["dodge","armour","resistance","chitin","flesh","speed"]
+	
 
 
 func init_arr() -> void:
@@ -79,6 +92,7 @@ func init_arr() -> void:
 
 func init_node() -> void:
 	node.game = get_node("/root/Game") 
+	node.camera = get_node("/root/Game/Camera3D") 
 
 
 func init_flag() -> void:
@@ -88,10 +102,17 @@ func init_flag() -> void:
 
 func init_vec() -> void:
 	vec.size = {}
-	vec.size.champ = Vector2(4, 4)
 	
 	vec.scale = {}
-	vec.scale.continent = Vector2(0.25, 0.25)
+	
+	vec.center = {}
+	vec.center.spielautomat = Vector3(3,3,8)
+	
+	vec.shift = {}
+	vec.shift.spielautomat = Vector3(-3,0,-6)
+	
+	vec.angle = {}
+	vec.angle.camera = Vector3(-PI/12,PI/3,0)
 
 
 func init_scene() -> void:
@@ -102,7 +123,8 @@ func init_scene() -> void:
 	scene.fehler = load("res://scenes/3/fehler/Fehler.tscn")
 	scene.zeitspanne = load("res://scenes/3/zeitspanne/Zeitspanne.tscn")
 	scene.zeitleiste = load("res://scenes/3/zeitleiste/Zeitleiste.tscn")
-	scene.cube = load("res://scenes/3/cube/cube.tscn")
+	scene.fehler = load("res://scenes/3/fehler/Fehler.tscn")
+	scene.spielautomat = load("res://scenes/4/spielautomat/Spielautomat.tscn")
 
 
 func _ready() -> void:

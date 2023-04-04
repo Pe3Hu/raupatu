@@ -1,10 +1,6 @@
-res://scenes/3/cube/cube.tscn
-res://scenes/3/cube/cube.gd
 res://scenes/game/Game.tscn
-res://scripts/Global.gd
-res://scripts/Classes_3.gd
-res://scenes/1/leinwand/leinwand.tscn
-res://scenes/3/zeitspanne/zeitspanne.tscn
-res://scenes/3/fehler/fehler.tscn
-res://scenes/3/zeitleiste/zeitleiste.tscn
+res://scenes/3/fehler/Fehler.tscn
+res://scenes/4/spielautomat/spielautomat.tscn
+res://scripts/Classes_4.gd
 res://scenes/game/Game.gd
+res://scripts/Global.gd

@@ -1,15 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://dcg4a7ljh3f84"]
+[gd_scene load_steps=2 format=3 uid="uid://l0vc32momnw5"]
 
-[ext_resource type="Script" path="res://scenes/3/fehler/fehler.gd" id="1_3eg6o"]
+[ext_resource type="Script" path="res://scenes/3/fehler/Fehler.gd" id="1_mlk88"]
 
-[node name="Fehler" type="MarginContainer"]
-offset_right = 40.0
-offset_bottom = 40.0
-rotation = 1.5708
-script = ExtResource("1_3eg6o")
+[node name="Fehler" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.51)
+script = ExtResource("1_mlk88")
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 2
-text = "2A"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.25, 0.5)
+
+[node name="LabelX" type="Label3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.01, 0.25, 0.5)
+text = "X
+"
+font_size = 64
+
+[node name="LabelZ" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.25, 1.01)
+text = "Z"
+font_size = 64
