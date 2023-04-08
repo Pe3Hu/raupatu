@@ -75,9 +75,14 @@ class Fehler:
 		if next_grid.x < obj.saal.num.depth:
 			var next_pfeiler = obj.saal.arr.pfeiler[next_grid.z][next_grid.x]
 			next_pfeiler.add_fehler(self)
+		else:
+			boom()
 
 
 	func boom() -> void:
+		obj.pfeiler.remove_fehler(self)
+		Global.obj.spielautomat.remove_fehler_after_boom(self)
+		scene.myself.visible = false
 		print('boom')
 
 
@@ -137,7 +142,11 @@ class Pfeiler:
 
 
 	func remove_fehler(fehler_) -> void:
+		var index = arr.fehler.find(fehler_)
 		arr.fehler.erase(fehler_)
+		
+		for fehler in arr.fehler:
+			fehler.update_position()
 
 
 #зал

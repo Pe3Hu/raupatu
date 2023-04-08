@@ -68,17 +68,28 @@ class Kacheln:
 
 	func set_symbol(symbol_) -> void:
 		obj.symbol = symbol_
-		var data = obj.symbol.obj.fehler.word.emblem
-		var path = "res://asset/png/emblem/"+data.type+"/"+data.subtype+"/"+data.name+".png"
+		var path = "res://asset/png/emblem/"
+		
+		if obj.symbol.obj.fehler != null:
+			var data = obj.symbol.obj.fehler.word.emblem
+			path += data.type+"/"+data.subtype+"/"+data.name+".png"
+		else:
+			path += "empty.png"
+		
 		var image = Image.new()
 		image.load(path)
 		var texture = ImageTexture.create_from_image(image)
 		mesh.sprite.set_texture(texture)
-		mesh.plane.mesh.material.albedo_color = obj.symbol.obj.fehler.color.cube
+		
+		if obj.symbol.obj.fehler != null:
+			mesh.plane.mesh.material.albedo_color = obj.symbol.obj.fehler.color.cube
+		else:
+			mesh.plane.mesh.material.albedo_color = Color.SLATE_GRAY
 
 
 	func on_screen() -> bool:
 		return num.order.current != 0 && num.order.current != 4
+
 
 #Рулон
 class Rolle:
@@ -106,6 +117,14 @@ class Rolle:
 			for _i in repeatability:
 				var input = {}
 				input.fehler = fehler
+				input.rolle = self
+				var symbol = Classes_4.Symbol.new(input)
+				arr.symbol.append(symbol)
+		
+		
+		for _i in Global.num.pielautomat.height:
+				var input = {}
+				input.fehler = null
 				input.rolle = self
 				var symbol = Classes_4.Symbol.new(input)
 				arr.symbol.append(symbol)
@@ -146,9 +165,15 @@ class Rolle:
 
 	func fehler_jumps() -> void:
 		for kacheln in arr.kacheln:
-			if kacheln.on_screen():
+			if kacheln.on_screen() && kacheln.obj.symbol.obj.fehler != null:
 				var step = 1
 				kacheln.obj.symbol.obj.fehler.jump(step)
+
+
+	func remove_fehler(fehler_) -> void:
+		for _i in range(arr.symbol.size()-1,-1,-1):
+			if arr.symbol[_i].obj.fehler == fehler_:
+				arr.symbol.erase(arr.symbol[_i])
 
 
 #Слот-машина
@@ -192,3 +217,8 @@ class Spielautomat:
 	func roll_rolles() -> void:
 		for rolle in arr.rolle:
 			rolle.roll()
+
+
+	func remove_fehler_after_boom(fehler_) -> void:
+		for rolle in arr.rolle:
+			rolle.remove_fehler(fehler_)
