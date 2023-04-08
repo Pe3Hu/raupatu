@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://l0vc32momnw5"]
+
+[ext_resource type="Script" path="res://scene/3/fehler/Fehler.gd" id="1_oy88t"]
+[ext_resource type="Texture2D" uid="uid://bumjew5hlkruc" path="res://asset/png/emblem/strip_h/0/60.png" id="2_5c81m"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ofq0w"]
+load_path = "res://.godot/imported/60.png-fd4c22981587ef75afadda0bba573f8f.s3tc.ctex"
+
+[node name="Fehler" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.51)
+script = ExtResource("1_oy88t")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.25, 0.5)
+
+[node name="LabelX" type="Label3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.01, 0.25, 0.5)
+visible = false
+text = "X
+"
+font_size = 64
+
+[node name="LabelZ" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.25, 1.01)
+visible = false
+text = "Z"
+font_size = 64
+
+[node name="SpriteX" type="Sprite3D" parent="."]
+transform = Transform3D(-1.74846e-08, 0, 0.4, 0, 0.4, 0, -0.4, 0, -1.74846e-08, 1.01, 0.25, 0.5)
+texture = ExtResource("2_5c81m")
+
+[node name="SpriteZ" type="Sprite3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.5, 0.25, 1.01)
+texture = SubResource("CompressedTexture2D_ofq0w")

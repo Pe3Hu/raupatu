@@ -11,18 +11,18 @@ config_version=5
 [application]
 
 config/name="raupatu"
-run/main_scene="res://scenes/game/Game.tscn"
+run/main_scene="res://scene/game/Game.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Global="*res://scripts/Global.gd"
-Classes_0="*res://scripts/Classes_0.gd"
-Classes_1="*res://scripts/Classes_1.gd"
-Classes_2="*res://scripts/Classes_2.gd"
-Classes_3="*res://scripts/Classes_3.gd"
-Classes_4="*res://scripts/Classes_4.gd"
+Global="*res://script/Global.gd"
+Classes_0="*res://script/Classes_0.gd"
+Classes_1="*res://script/Classes_1.gd"
+Classes_2="*res://script/Classes_2.gd"
+Classes_3="*res://script/Classes_3.gd"
+Classes_4="*res://script/Classes_4.gd"
 
 [display]
 

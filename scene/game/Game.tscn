@@ -1,0 +1,120 @@
+[gd_scene load_steps=17 format=3 uid="uid://dpq0g6jrlkuea"]
+
+[ext_resource type="Script" path="res://scene/game/Game.gd" id="1_35sda"]
+[ext_resource type="Texture2D" uid="uid://bb8p572r518uj" path="res://asset/png/emblem/strip_h/0/30.png" id="2_n7m2n"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hdolg"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_h5n63"]
+material = SubResource("StandardMaterial3D_hdolg")
+size = Vector2(7, 5)
+center_offset = Vector3(3.5, 2.5, 0)
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vlb2j"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7q6mj"]
+material = SubResource("StandardMaterial3D_vlb2j")
+size = Vector2(3, 5)
+center_offset = Vector3(0, 2.5, 1.5)
+orientation = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_266ub"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jqfoo"]
+material = SubResource("StandardMaterial3D_266ub")
+size = Vector2(7, 5)
+center_offset = Vector3(-3, 0, -6.1)
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3iwwj"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_101gp"]
+material = SubResource("StandardMaterial3D_3iwwj")
+size = Vector2(1, 5)
+center_offset = Vector3(-6, 0, -5.99)
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kbby5"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_dkrs5"]
+material = SubResource("StandardMaterial3D_kbby5")
+size = Vector2(1, 5)
+center_offset = Vector3(0, 0, -5.99)
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_il0hw"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_mou56"]
+material = SubResource("StandardMaterial3D_il0hw")
+size = Vector2(5, 1)
+center_offset = Vector3(-3, 2, -5.98)
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6srl8"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_8y0sl"]
+material = SubResource("StandardMaterial3D_6srl8")
+size = Vector2(5, 1)
+center_offset = Vector3(-3, -2, -5.98)
+orientation = 2
+
+[node name="Game" type="Node3D"]
+script = ExtResource("1_35sda")
+
+[node name="FPS" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 3.51502, 4.6877, 5.66309)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.5, -0.224144, 0.836516, 0, 0.965926, 0.258819, -0.866025, -0.12941, 0.482963, 9, 3.5, 8)
+current = true
+
+[node name="PlaneZ" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_h5n63")
+
+[node name="Pfeilers" type="Node3D" parent="."]
+
+[node name="Fehlers" type="Node3D" parent="."]
+
+[node name="PlaneX" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_7q6mj")
+
+[node name="test" type="Sprite3D" parent="."]
+transform = Transform3D(0.5, -0.224144, 0.836516, 0, 0.965926, 0.258819, -0.866025, -0.12941, 0.482963, 6.5165, 3.5, 5.36148)
+visible = false
+cast_shadow = 0
+texture = ExtResource("2_n7m2n")
+
+[node name="Spielautomat" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 3.5, 8.4)
+
+[node name="BG" type="MeshInstance3D" parent="Spielautomat"]
+transform = Transform3D(0.5, -0.224144, 0.836516, 0, 0.965926, 0.258819, -0.866025, -0.12941, 0.482963, 0, 0, 0)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_jqfoo")
+skeleton = NodePath("../..")
+
+[node name="Left" type="MeshInstance3D" parent="Spielautomat"]
+transform = Transform3D(0.5, -0.224144, 0.836516, 0, 0.965926, 0.258819, -0.866025, -0.12941, 0.482963, 0, 0, 0)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_101gp")
+
+[node name="Right" type="MeshInstance3D" parent="Spielautomat"]
+transform = Transform3D(0.5, -0.224144, 0.836516, 0, 0.965926, 0.258819, -0.866025, -0.12941, 0.482963, 0, 0, 0)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_dkrs5")
+
+[node name="Top" type="MeshInstance3D" parent="Spielautomat"]
+transform = Transform3D(0.5, -0.224144, 0.836516, 0, 0.965926, 0.258819, -0.866025, -0.12941, 0.482963, 0, 0, 0)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_mou56")
+
+[node name="Bot" type="MeshInstance3D" parent="Spielautomat"]
+transform = Transform3D(0.5, -0.224144, 0.836516, 0, 0.965926, 0.258819, -0.866025, -0.12941, 0.482963, 0, 0, 0)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_8y0sl")

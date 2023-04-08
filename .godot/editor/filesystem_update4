@@ -1,6 +1,9 @@
 res://scenes/game/Game.tscn
 res://scenes/3/fehler/Fehler.tscn
-res://scenes/4/spielautomat/spielautomat.tscn
-res://scripts/Classes_4.gd
-res://scenes/game/Game.gd
-res://scripts/Global.gd
+res://scene/game/Game.tscn
+res://scene/3/fehler/Fehler.tscn
+res://script/Global.gd
+res://script/Classes_4.gd
+res://script/Classes_3.gd
+res://scene/3/fehler/Fehler.gd
+res://scene/game/Game.gd
