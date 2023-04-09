@@ -81,6 +81,8 @@ mesh = SubResource("PlaneMesh_h5n63")
 
 [node name="Fehlers" type="Node3D" parent="."]
 
+[node name="Ankers" type="Node3D" parent="."]
+
 [node name="PlaneX" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_7q6mj")
 

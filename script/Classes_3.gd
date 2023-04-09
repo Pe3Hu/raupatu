@@ -1,12 +1,39 @@
 extends Node
 
 
+#якорь
+class Anker:
+	var word = {}
+	var obj = {}
+	var scene = {}
+
+
+	func _init(input_) -> void:
+		word.type = input_.type
+		obj.bienenstock = input_.bienenstock
+		obj.saal = obj.bienenstock.obj.saal
+		obj.pfeiler = input_.pfeiler
+		obj.pfeiler.obj.anker = self
+		init_scene()
+
+
+	func init_scene() -> void:
+		scene.myself = Global.scene.anker.instantiate()
+		scene.myself.position = obj.pfeiler.vec.grid+Vector3(0.5,0.25,0.5)
+		Global.node.game.get_node("Ankers").add_child(scene.myself)
+
+
+	func die() -> void:
+		obj.saal.arr.anker.erase(self)
+		obj.pfeiler.obj.anker = null
+		#Global.node.game.get_node("Ankers").
+		scene.myself.queue_free()
+
 #жук
 class Fehler:
 	var num = {}
 	var word = {}
 	var obj = {}
-	var mesh = {}
 	var scene = {}
 	var color = {}
 
@@ -14,7 +41,6 @@ class Fehler:
 	func _init(input_) -> void:
 		num.index = Global.num.index.fehler
 		Global.num.index.fehler += 1
-		obj.bienenstock = input_.bienenstock
 		word.type = input_.type
 		obj.bienenstock = input_.bienenstock
 		obj.saal = obj.bienenstock.obj.saal
@@ -24,10 +50,11 @@ class Fehler:
 
 	func init_scene() -> void:
 		scene.myself = Global.scene.fehler.instantiate()
-		scene.myself.set_label(str(num.index))
+		#scene.myself.set_label(str(num.index))
 		Global.node.game.get_node("Fehlers").add_child(scene.myself)
 		update_color()
 		get_emlbem()
+		scene.myself.visible = false
 
 
 	func update_position() -> void:
@@ -69,36 +96,53 @@ class Fehler:
 
 
 	func jump(step_) -> void:
-		var next_grid = Vector3()+obj.pfeiler.vec.grid
-		next_grid.x += step_
+		var step = step_
 		
-		if next_grid.x < obj.saal.num.depth:
-			var next_pfeiler = obj.saal.arr.pfeiler[next_grid.z][next_grid.x]
-			next_pfeiler.add_fehler(self)
-		else:
-			boom()
+		if obj.pfeiler == null:
+			var pfeilers = Global.get_random_element(obj.saal.arr.pfeiler)
+			pfeilers[0].add_fehler(self)
+			step -= 1
+			scene.myself.visible = true
+		
+		if step > 0:
+			var next_grid = Vector3()+obj.pfeiler.vec.grid
+			next_grid.x += step
+			
+			if next_grid.x < obj.saal.num.depth:
+				var next_pfeiler = obj.saal.arr.pfeiler[next_grid.z][next_grid.x]
+				next_pfeiler.add_fehler(self)
+			else:
+				boom()
 
 
 	func boom() -> void:
 		obj.pfeiler.remove_fehler(self)
 		Global.obj.spielautomat.remove_fehler_after_boom(self)
-		scene.myself.visible = false
+		#scene.myself.visible = false
+		obj.bienenstock.arr.fehler.erase(self)
+		obj.bienenstock.arr.trophy.append(self)
+		obj.bienenstock.flag.stop = obj.bienenstock.arr.fehler.size() > 0
+		scene.myself.queue_free()
 		print('boom')
 
 
 #столб
 class Pfeiler:
+	var num = {}
 	var vec = {}
 	var obj = {}
 	var arr = {}
-	var scene = {}
+	var dict = {}
 	var mesh = {}
 
 
 	func _init(input_) -> void:
-		vec.grid = Vector3(input_.width, 0, input_.depth)
+		num.far_away = -1
+		vec.grid = Vector3(input_.depth, 0, input_.width)
 		obj.saal = input_.saal
+		obj.anker = null
 		arr.fehler = []
+		dict.neighbor = {}
 		init_mesh()
 
 
@@ -162,6 +206,7 @@ class Saal:
 		num.width = input_.width
 		num.depth = input_.depth
 		obj.bienenstock = input_.bienenstock
+		arr.anker = []
 		init_pfeilers()
 
 
@@ -173,20 +218,76 @@ class Saal:
 			
 			for _j in num.depth:
 				var input = {}
-				input.width = _j
-				input.depth = _i
+				input.width = _i
+				input.depth = _j
 				input.saal = self
-				arr.pfeiler[_i].append(Classes_3.Pfeiler.new(input))
+				var pfeiler = Classes_3.Pfeiler.new(input)
+				arr.pfeiler[_i].append(pfeiler)
+		
+		set_pfeiler_neighbors()
+
+
+	func set_pfeiler_neighbors() -> void:
+		for pfeilers in arr.pfeiler:
+			for pfeiler in pfeilers: 
+				for direction in Global.dict.neighbor.linear3:
+					var grid = pfeiler.vec.grid+direction
+					
+					if on_saal_check(grid):
+						pfeiler.dict.neighbor[direction] = arr.pfeiler[grid.z][grid.x]
+
+
+	func get_free_pfeilers() -> Array:
+		var pfeilers = []
+		
+		for pfeilers_ in arr.pfeiler:
+			for pfeiler in pfeilers_:
+				if pfeiler.arr.fehler.size() == 0:
+					pfeilers.append(pfeiler)
+					pfeiler.num.far_away = -1
+				else:
+					pfeiler.num.far_away = 0
+		
+		var stop_flag = true
+		
+		while stop_flag:
+			stop_flag = false
+			
+			for pfeiler in pfeilers:
+				var distances = [] 
+				
+				for direction in pfeiler.dict.neighbor.keys():
+					var neighbor = pfeiler.dict.neighbor[direction]
+					
+					if neighbor.num.far_away != -1:
+						distances.append(neighbor.num.far_away)
+				
+				if distances.size() > 0:
+					distances.sort_custom(func(a, b): return a < b)
+					pfeiler.num.far_away = distances[0]+1
+			
+			for pfeiler in pfeilers:
+				if pfeiler.num.far_away == -1:
+					stop_flag = true
+		
+		return pfeilers
+
+
+	func on_saal_check(vec_: Vector3) -> bool:
+		return vec_.x >= 0 && vec_.x < num.depth && vec_.z >= 0 && vec_.z < num.width
 
 
 #улей
 class Bienenstock:
 	var obj = {}
 	var arr = {}
+	var flag = {}
 	var scene = {}
 
 
 	func _init() -> void:
+		flag.end = false
+		arr.trophy = []
 		init_saal()
 		init_fehlers()
 
@@ -211,7 +312,7 @@ class Bienenstock:
 		types["flesh"] = 3
 		types["speed"] = 5
 		
-		var n = 15
+		var n = 10
 		
 		#for type in types.keys():
 		#	for _i in types[type]:
@@ -222,6 +323,50 @@ class Bienenstock:
 			input.type = type+"man"
 			var fehler = Classes_3.Fehler.new(input)
 			arr.fehler.append(fehler)
+
+
+	func add_ankers() -> void:
+		var types = []
+		types.append_array(Global.dict.anker.type)
+		types.shuffle()
+		var pfeilers = obj.saal.get_free_pfeilers()
+		var datas = []
+		
+		for pfeiler in pfeilers:
+			var data = {}
+			data.pfeiler = pfeiler
+			data.distance = pfeiler.num.far_away
+			datas.append(data)
+		
+		datas.sort_custom(func(a, b): return a.distance < b.distance)
+		
+		for type in types:
+			var options = []
 			
-			var pfeilers = Global.get_random_element(obj.saal.arr.pfeiler)
-			pfeilers[0].add_fehler(fehler)
+			for pfeiler in pfeilers:
+				var n = 0
+			
+				match type:
+					"introvert":
+						n = pfeiler.num.far_away-1
+					"extrovert":
+						n = datas[0].distance-pfeiler.num.far_away+1
+					"chaotic":
+						n = 1
+			
+				for _i in n:
+					options.append(pfeiler)
+			
+			var pfeiler = Global.get_random_element(options)
+			var input = {}
+			input.type = type
+			input.pfeiler = pfeiler
+			input.bienenstock = self
+			var anker = Classes_3.Anker.new(input)
+			obj.saal.arr.anker.append(anker)
+
+
+	func clean_ankers() -> void:
+		for _i in range(obj.saal.arr.anker.size()-1,-1,-1):
+			var anker = obj.saal.arr.anker[_i]
+			anker.die()

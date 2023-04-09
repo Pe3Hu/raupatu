@@ -76,9 +76,7 @@ class Kacheln:
 		else:
 			path += "empty.png"
 		
-		var image = Image.new()
-		image.load(path)
-		var texture = ImageTexture.create_from_image(image)
+		var texture = load(path)
 		mesh.sprite.set_texture(texture)
 		
 		if obj.symbol.obj.fehler != null:
@@ -214,11 +212,17 @@ class Spielautomat:
 		#obj.saal = Classes_4.Saal.new(input)
 
 
-	func roll_rolles() -> void:
+	func next_turn() -> void:
+		Global.obj.bienenstock.clean_ankers()
+		
 		for rolle in arr.rolle:
 			rolle.roll()
+		
+		if !Global.obj.bienenstock.flag.end:
+			Global.obj.bienenstock.add_ankers()
 
 
 	func remove_fehler_after_boom(fehler_) -> void:
 		for rolle in arr.rolle:
 			rolle.remove_fehler(fehler_)
+		

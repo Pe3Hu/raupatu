@@ -1,9 +1,9 @@
-res://scenes/game/Game.tscn
-res://scenes/3/fehler/Fehler.tscn
 res://scene/game/Game.tscn
 res://scene/3/fehler/Fehler.tscn
-res://script/Global.gd
-res://script/Classes_4.gd
 res://script/Classes_3.gd
-res://scene/3/fehler/Fehler.gd
+res://script/Classes_4.gd
+res://scene/3/anker/anker.tscn
+res://script/Global.gd
+res://scene/3/anker/Anker.tscn
 res://scene/game/Game.gd
+res://scene/3/fehler/Fehler.gd

@@ -41,11 +41,11 @@ func init_num() -> void:
 
 func init_dict() -> void:
 	dict.neighbor = {}
-	dict.neighbor.linear = [
-		Vector2( 0,-1),
-		Vector2( 1, 0),
-		Vector2( 0, 1),
-		Vector2(-1, 0)
+	dict.neighbor.linear3 = [
+		Vector3( 0, 0, -1),
+		Vector3( 1, 0,  0),
+		Vector3( 0, 0,  1),
+		Vector3(-1, 0,  0)
 	]
 	dict.neighbor.diagonal = [
 		Vector2( 1,-1),
@@ -86,7 +86,11 @@ func init_dict() -> void:
 		"speed": 3,
 		"": 1,
 	}
+	
 	init_emblems()
+	
+	dict.anker = {}
+	dict.anker.type = ["introvert","extrovert","chaotic"]
 
 
 func init_emblems() -> void:
@@ -155,9 +159,10 @@ func init_scene() -> void:
 	scene.zugang = load("res://scene/1/zugang/Zugang.tscn")
 	scene.leinwand = load("res://scene/1/leinwand/Leinwand.tscn")
 	scene.fehler = load("res://scene/3/fehler/Fehler.tscn")
-	scene.zeitspanne = load("res://scene/3/zeitspanne/Zeitspanne.tscn")
-	scene.zeitleiste = load("res://scene/3/zeitleiste/Zeitleiste.tscn")
+	#scene.zeitspanne = load("res://scene/3/zeitspanne/Zeitspanne.tscn")
+	#scene.zeitleiste = load("res://scene/3/zeitleiste/Zeitleiste.tscn")
 	scene.fehler = load("res://scene/3/fehler/Fehler.tscn")
+	scene.anker = load("res://scene/3/anker/Anker.tscn")
 	scene.spielautomat = load("res://scene/4/spielautomat/Spielautomat.tscn")
 
 

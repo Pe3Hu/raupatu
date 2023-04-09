@@ -58,9 +58,7 @@ func set_label(text_) -> void:
 
 func set_emlbem(data_) -> void:
 	var path = "res://asset/png/emblem/"+data_.type+"/"+data_.subtype+"/"+data_.name+".png"
-	var image = Image.new()
-	image.load(path)
-	var texture = ImageTexture.create_from_image(image)
+	var texture = load(path)
 	$SpriteX.set_texture(texture)
 	$SpriteZ.set_texture(texture)
 
