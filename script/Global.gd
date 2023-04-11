@@ -125,6 +125,7 @@ func init_arr() -> void:
 	arr.sequence["B000000"] = [2, 3, 5, 8, 10, 13, 17, 20, 24, 29, 33, 38]
 	arr.color = ["Red","Green","Blue","Yellow"]
 	arr.delta = [3,4,5,6,7,8,9]#[2,3,4,5,6,7,8,9,10]
+	arr.wave = ["uppercut","overhand","hook","jab"]
 
 
 func init_node() -> void:
@@ -159,8 +160,6 @@ func init_scene() -> void:
 	scene.zugang = load("res://scene/1/zugang/Zugang.tscn")
 	scene.leinwand = load("res://scene/1/leinwand/Leinwand.tscn")
 	scene.fehler = load("res://scene/3/fehler/Fehler.tscn")
-	#scene.zeitspanne = load("res://scene/3/zeitspanne/Zeitspanne.tscn")
-	#scene.zeitleiste = load("res://scene/3/zeitleiste/Zeitleiste.tscn")
 	scene.fehler = load("res://scene/3/fehler/Fehler.tscn")
 	scene.anker = load("res://scene/3/anker/Anker.tscn")
 	scene.spielautomat = load("res://scene/4/spielautomat/Spielautomat.tscn")

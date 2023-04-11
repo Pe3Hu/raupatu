@@ -32,7 +32,7 @@ orientation = 2
 [sub_resource type="PlaneMesh" id="PlaneMesh_101gp"]
 material = SubResource("StandardMaterial3D_3iwwj")
 size = Vector2(1, 5)
-center_offset = Vector3(-6, 0, -5.99)
+center_offset = Vector3(-6, 0, -5.999)
 orientation = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kbby5"]
@@ -40,7 +40,7 @@ orientation = 2
 [sub_resource type="PlaneMesh" id="PlaneMesh_dkrs5"]
 material = SubResource("StandardMaterial3D_kbby5")
 size = Vector2(1, 5)
-center_offset = Vector3(0, 0, -5.99)
+center_offset = Vector3(0, 0, -5.999)
 orientation = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_il0hw"]
@@ -48,7 +48,7 @@ orientation = 2
 [sub_resource type="PlaneMesh" id="PlaneMesh_mou56"]
 material = SubResource("StandardMaterial3D_il0hw")
 size = Vector2(5, 1)
-center_offset = Vector3(-3, 2, -5.98)
+center_offset = Vector3(-3, 2, -5.997)
 orientation = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6srl8"]
@@ -56,7 +56,7 @@ orientation = 2
 [sub_resource type="PlaneMesh" id="PlaneMesh_8y0sl"]
 material = SubResource("StandardMaterial3D_6srl8")
 size = Vector2(5, 1)
-center_offset = Vector3(-3, -2, -5.98)
+center_offset = Vector3(-3, -2, -5.997)
 orientation = 2
 
 [node name="Game" type="Node3D"]
@@ -93,7 +93,7 @@ cast_shadow = 0
 texture = ExtResource("2_n7m2n")
 
 [node name="Spielautomat" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 3.5, 8.4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 5.5, 8.15)
 
 [node name="BG" type="MeshInstance3D" parent="Spielautomat"]
 transform = Transform3D(0.5, -0.224144, 0.836516, 0, 0.965926, 0.258819, -0.866025, -0.12941, 0.482963, 0, 0, 0)

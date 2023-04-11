@@ -19,15 +19,26 @@ class Anker:
 
 	func init_scene() -> void:
 		scene.myself = Global.scene.anker.instantiate()
-		scene.myself.position = obj.pfeiler.vec.grid+Vector3(0.5,0.25,0.5)
+		scene.myself.position = obj.pfeiler.vec.grid+Vector3(0.5,0,0.5)#y=2.5
 		Global.node.game.get_node("Ankers").add_child(scene.myself)
+		var color = null
+		var mesh = scene.myself.get_node("MeshSphere").mesh
+		mesh.material = mesh.material.duplicate()
+		
+		match obj.pfeiler.color.plane:
+			Color.BLACK:
+				color = Color.WHITE
+			Color.WHITE:
+				color = Color.BLACK
+		
+		mesh.material.albedo_color = color
 
 
 	func die() -> void:
 		obj.saal.arr.anker.erase(self)
 		obj.pfeiler.obj.anker = null
-		#Global.node.game.get_node("Ankers").
 		scene.myself.queue_free()
+
 
 #жук
 class Fehler:
@@ -50,7 +61,6 @@ class Fehler:
 
 	func init_scene() -> void:
 		scene.myself = Global.scene.fehler.instantiate()
-		#scene.myself.set_label(str(num.index))
 		Global.node.game.get_node("Fehlers").add_child(scene.myself)
 		update_color()
 		get_emlbem()
@@ -133,6 +143,7 @@ class Pfeiler:
 	var obj = {}
 	var arr = {}
 	var dict = {}
+	var color = {}
 	var mesh = {}
 
 
@@ -155,16 +166,16 @@ class Pfeiler:
 		var material = StandardMaterial3D.new()
 		material.vertex_color_use_as_albedo = true
 		mesh.plane.mesh.surface_set_material(0, material)  
-		var color = null
+		color.plane = null
 		var index = (int(vec.grid.x)+int(vec.grid.z))%2
 		
 		match index:
 			0:
-				color = Color.BLACK
+				color.plane = Color.BLACK
 			1:
-				color = Color.WHITE
+				color.plane = Color.WHITE
 		
-		mesh.plane.mesh.material.albedo_color = color
+		mesh.plane.mesh.material.albedo_color = color.plane
 		Global.node.game.get_node("Pfeilers").add_child(mesh.plane)
 
 
@@ -343,7 +354,8 @@ class Bienenstock:
 		for type in types:
 			var options = []
 			
-			for pfeiler in pfeilers:
+			for data in datas:
+				var pfeiler = data.pfeiler
 				var n = 0
 			
 				match type:
@@ -357,13 +369,21 @@ class Bienenstock:
 				for _i in n:
 					options.append(pfeiler)
 			
-			var pfeiler = Global.get_random_element(options)
-			var input = {}
-			input.type = type
-			input.pfeiler = pfeiler
-			input.bienenstock = self
-			var anker = Classes_3.Anker.new(input)
-			obj.saal.arr.anker.append(anker)
+			if options.size() > 0:
+				var pfeiler = Global.get_random_element(options)
+				var input = {}
+				input.type = type
+				input.pfeiler = pfeiler
+				input.bienenstock = self
+				var anker = Classes_3.Anker.new(input)
+				obj.saal.arr.anker.append(anker)
+				
+				for data in datas:
+					if data.pfeiler == pfeiler:
+						datas.erase(data)
+						break
+				
+				datas.sort_custom(func(a, b): return a.distance < b.distance)
 
 
 	func clean_ankers() -> void:
