@@ -2,11 +2,11 @@ extends Node
 
 
 
-#Символ
-class Symbol:
+#Волшебник
+class Zauberer:
+	var word = {}
 	var obj = {}
 
 
 	func _init(input_) -> void:
-		obj.rolle = input_.rolle
-		obj.fehler = input_.fehler
+		obj.waffe = null

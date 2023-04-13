@@ -3,6 +3,7 @@ extends Node3D
 
 func _ready():
 	#Global.obj.leinwand = Classes_1.Leinwand.new()
+	Global.obj.brunnen = Classes_2.Brunnen.new()
 	Global.obj.bienenstock = Classes_3.Bienenstock.new()
 	Global.obj.spielautomat = Classes_4.Spielautomat.new()
 #	datas.sort_custom(func(a, b): return a.value > b.value)

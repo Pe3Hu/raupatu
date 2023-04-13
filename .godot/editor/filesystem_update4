@@ -1,6 +1,7 @@
-res://scene/3/anker/Anker.tscn
-res://script/Classes_5.gd
 res://scene/game/Game.tscn
-res://scene/3/fehler/Fehler.tscn
-res://scene/5/spell/Spell.tscn
 res://script/Global.gd
+res://scene/3/fehler/Fehler.tscn
+res://scene/3/anker/Anker.tscn
+res://scene/5/spell/Spell.tscn
+res://script/Classes_2.gd
+res://scene/game/Game.gd

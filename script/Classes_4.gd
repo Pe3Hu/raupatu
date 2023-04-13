@@ -225,4 +225,4 @@ class Spielautomat:
 	func remove_fehler_after_boom(fehler_) -> void:
 		for rolle in arr.rolle:
 			rolle.remove_fehler(fehler_)
-		
+

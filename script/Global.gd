@@ -88,6 +88,8 @@ func init_dict() -> void:
 	}
 	
 	init_emblems()
+	init_aktions()
+	init_waffes()
 	
 	dict.anker = {}
 	dict.anker.type = ["introvert","extrovert","chaotic"]
@@ -113,7 +115,55 @@ func init_emblems() -> void:
 	for aspect in dict.fehler.repeatability.keys():
 		dict.emlbem.aspect[aspect] = []
 		dict.emlbem.aspect[aspect].append_array(dict.emlbem.type)
+
+
+func init_aktions() -> void:
+	dict.aktion = {}
+	var path = "res://asset/json/aktion_data.json"
+	var array = load_data(path)
+	dict.aktion.parameter = {}
+	dict.aktion.name = {}
 	
+	for key in array.front().keys():
+		if key != "Name":
+			dict.aktion.parameter[key] = []
+	
+	for aktion in array:
+		dict.aktion.name[aktion["Name"]] = aktion
+		
+		for key in dict.aktion.parameter.keys():
+			
+			if !dict.aktion.parameter[key].has(aktion[key]):
+				dict.aktion.parameter[key].append(aktion[key])
+
+
+func init_waffes() -> void:
+	dict.waffe = {}
+	var path = "res://asset/json/waffe_data.json"
+	var array = load_data(path)
+	dict.waffe.type = {}
+	dict.waffe.abbreviation = {}
+	
+	for key in array.front().keys():
+		if key != "Type":
+			var abbreviation = ""
+			var words = key.split(" ",true,5)
+			
+			for word in words:
+				if word != "of" && word != "the":
+					abbreviation += word[0].to_upper()
+				
+			dict.waffe.abbreviation[key] = abbreviation
+	
+	for waffe in array:
+		var data = {}
+		
+		for key in waffe.keys():
+			if key != "Type":
+				var abbreviation = dict.waffe.abbreviation[key]
+				data[abbreviation] = waffe[key]
+		
+		dict.waffe.type[waffe["Type"]] = data
 
 
 func init_arr() -> void:
