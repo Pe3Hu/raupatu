@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://dpq0g6jrlkuea"]
+[gd_scene load_steps=18 format=3 uid="uid://dpq0g6jrlkuea"]
 
 [ext_resource type="Script" path="res://scene/game/Game.gd" id="1_35sda"]
 [ext_resource type="Texture2D" uid="uid://bb8p572r518uj" path="res://asset/png/emblem/strip_h/0/30.png" id="2_n7m2n"]
+[ext_resource type="PackedScene" uid="uid://dn2vorjfhyu7y" path="res://scene/5/aktion/Aktion.tscn" id="2_vxnm4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hdolg"]
 
@@ -83,8 +84,15 @@ mesh = SubResource("PlaneMesh_h5n63")
 
 [node name="Ankers" type="Node3D" parent="."]
 
+[node name="Aktions" type="Node3D" parent="."]
+transform = Transform3D(0.15, -0.0672432, 0.250955, 0, 0.289778, 0.0776457, -0.259808, -0.0388229, 0.144889, 7.4, 2.2, 8.6)
+
 [node name="PlaneX" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_7q6mj")
+
+[node name="Aktion" parent="." instance=ExtResource("2_vxnm4")]
+transform = Transform3D(0.15, -0.0672432, 0.250955, 0, 0.289778, 0.0776457, -0.259808, -0.0388229, 0.144889, 7.4, 2.2, 8.6)
+visible = false
 
 [node name="test" type="Sprite3D" parent="."]
 transform = Transform3D(0.5, -0.224144, 0.836516, 0, 0.965926, 0.258819, -0.866025, -0.12941, 0.482963, 6.5165, 3.5, 5.36148)

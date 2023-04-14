@@ -199,6 +199,7 @@ func init_vec() -> void:
 	
 	vec.shift = {}
 	vec.shift.spielautomat = Vector3(-3,0,-6)
+	#vec.shift.aktion = Vector3(7.4,2.2,8.6)
 	
 	vec.angle = {}
 	vec.angle.camera = Vector3(-PI/12,PI/3,0)
@@ -213,6 +214,7 @@ func init_scene() -> void:
 	scene.fehler = load("res://scene/3/fehler/Fehler.tscn")
 	scene.anker = load("res://scene/3/anker/Anker.tscn")
 	scene.spielautomat = load("res://scene/4/spielautomat/Spielautomat.tscn")
+	scene.aktion = load("res://scene/5/aktion/Aktion.tscn")
 
 
 func _ready() -> void:

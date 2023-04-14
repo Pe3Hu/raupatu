@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://dn2vorjfhyu7y"]
+
+[ext_resource type="Script" path="res://scene/5/aktion/Aktion.gd" id="1_vls02"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7adak"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.384314, 0.384314, 0.384314, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_yovrk"]
+material = SubResource("StandardMaterial3D_7adak")
+size = Vector2(1.6, 1.6)
+orientation = 2
+
+[node name="Aktion" type="Node3D"]
+script = ExtResource("1_vls02")
+
+[node name="Labels" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+
+[node name="Name" type="Label3D" parent="Labels"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.375, 0)
+text = "Aktion Name"
+
+[node name="Coverage" type="Label3D" parent="Labels"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.125, 0)
+text = "Coverage: Square 1"
+
+[node name="Damage" type="Label3D" parent="Labels"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.875, 0)
+text = "Damage: 100-100
+"
+
+[node name="Range" type="Label3D" parent="Labels"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.625, 0)
+text = "Range: 1-2
+"
+
+[node name="Mana" type="Label3D" parent="Labels"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375, 0)
+text = "Mana: 10
+"
+
+[node name="Layer" type="Label3D" parent="Labels"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+text = "Layer: Bottom
+"
+
+[node name="Border" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, -0.01)
+mesh = SubResource("PlaneMesh_yovrk")

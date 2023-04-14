@@ -1,10 +1,49 @@
 extends Node
 
 
+#Действие
+class Aktion:
+	var num = {}
+	var word = {}
+	var obj = {}
+	var scene = {}
+	var flag = {}
+
+
+	func _init(input_) -> void:
+		word.name = input_.name
+		obj.waffe = input_.waffe
+		obj.zauberer = null
+		calc_parameters()
+
+
+	func calc_parameters() -> void:
+		num.parameter = {}
+		word.parameter = {}
+		
+		for parameter in Global.dict.aktion.name[word.name].keys():
+			var value = Global.dict.aktion.name[word.name][parameter]
+			
+			match typeof(value):
+				3:
+					num.parameter[parameter] = value
+				4:
+					word.parameter[parameter] = value
+		
+		init_scene()
+
+
+	func init_scene() -> void:
+		scene.myself = Global.scene.aktion.instantiate()
+		Global.node.game.get_node("Aktions").add_child(scene.myself)
+		scene.myself.set_labels(self)
+
+
 #Орудие
 class Waffe:
 	var num = {}
 	var word = {}
+	var arr = {}
 	var obj = {}
 
 
@@ -14,6 +53,8 @@ class Waffe:
 		obj.brunnen = input_.brunnen
 		obj.zauberer = null
 		parameterize()
+		set_aktions()
+		add_aktions_on_screen()
 
 
 	func parameterize() -> void:
@@ -27,6 +68,26 @@ class Waffe:
 		Global.rng.randomize()
 		var top_rnd = Global.rng.randi_range(data["STR"], data["STI"])
 		num.damage.top += top_rnd
+
+
+	func set_aktions() -> void:
+		arr.aktion = []
+		
+		for key in Global.dict.aktion.name.keys():
+			if Global.dict.aktion.name[key]["Waffe"] == word.type:
+				var input = {}
+				input.name = key
+				input.waffe = self
+				var aktion = Classes_2.Aktion.new(input)
+				arr.aktion.append(aktion)
+
+
+	func add_aktions_on_screen() -> void:
+		var aktions = Global.node.game.get_node("Aktions").get_children()
+		
+		for _i in aktions.size():
+			var node = aktions[_i]
+			node.position.x += 1.7*_i
 
 
 #Фонтан

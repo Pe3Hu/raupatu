@@ -9,7 +9,6 @@ func _ready():
 #	datas.sort_custom(func(a, b): return a.value > b.value)
 
 
-
 func _input(event):
 	if event is InputEventMouseButton:
 		Global.mouse_pressed = !Global.mouse_pressed
