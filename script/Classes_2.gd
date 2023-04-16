@@ -35,7 +35,6 @@ class Aktion:
 
 	func init_scene() -> void:
 		scene.myself = Global.scene.aktion.instantiate()
-		Global.node.game.get_node("Aktions").add_child(scene.myself)
 		scene.myself.set_labels(self)
 
 
@@ -54,7 +53,6 @@ class Waffe:
 		obj.zauberer = null
 		parameterize()
 		set_aktions()
-		add_aktions_on_screen()
 
 
 	func parameterize() -> void:
@@ -83,11 +81,10 @@ class Waffe:
 
 
 	func add_aktions_on_screen() -> void:
-		var aktions = Global.node.game.get_node("Aktions").get_children()
-		
-		for _i in aktions.size():
-			var node = aktions[_i]
-			node.position.x += 1.7*_i
+		for _i in arr.aktion.size():
+			var node = arr.aktion[_i].scene.myself
+			Global.node.aktions.add_child(node)
+			node.position.x += -4.5+1.8*_i
 
 
 #Фонтан
@@ -102,7 +99,7 @@ class Brunnen:
 	func init_waffes() -> void:
 		arr.waffe = []
 		var n = 1
-		var types = ["Knuckles"]
+		var types = ["Bow"]
 		
 		for _i in n:
 			for type in types:

@@ -1,10 +1,11 @@
-res://scene/5/spell/Spell.tscn
-res://script/Classes_5.gd
-res://script/Global.gd
-res://scene/5/aktion/Aktion.tscn
-res://scene/5/aktion/Aktion.gd
-res://script/Classes_2.gd
 res://scene/game/Game.tscn
+res://script/Classes_2.gd
 res://scene/3/fehler/Fehler.tscn
 res://scene/3/anker/Anker.tscn
+res://scene/5/aktion/Aktion.tscn
+res://script/Global.gd
+res://script/Classes_4.gd
+res://script/Classes_3.gd
 res://scene/game/Game.gd
+res://script/Classes_5.gd
+res://scene/5/aktion/Aktion.gd

@@ -684,12 +684,31 @@
   "Type": "Ultimate"
  },
  {
-  "Waffe": "Wild magic",
+  "Waffe": "Primordial",
   "Distance": "Any",
-  "Name": "Pillar",
+  "Name": "Small Pillar",
   "Effect": "None",
   "Target layer ": "Any one in a stack",
-  "Coverage type": "Pillar",
+  "Coverage type": "Filling",
+  "Coverage area size ": "Pile without bottom and top",
+  "Target selection": "Each",
+  "Number of strikes": 1,
+  "Minimal range": 1,
+  "Maximum range": 8,
+  "Centre of application": "On the enemy",
+  "Additional trigger": "None",
+  "Number of parts": "Any",
+  "Mana": 30,
+  "Damage": 100,
+  "Type": "Basic"
+ },
+ {
+  "Waffe": "Primordial",
+  "Distance": "Any",
+  "Name": "Big Pillar ",
+  "Effect": "None",
+  "Target layer ": "Any one in a stack",
+  "Coverage type": "Sandwich ",
   "Coverage area size ": "Whole pile",
   "Target selection": "Each",
   "Number of strikes": 1,
@@ -698,12 +717,12 @@
   "Centre of application": "On the enemy",
   "Additional trigger": "None",
   "Number of parts": "Any",
-  "Mana": 40,
+  "Mana": 50,
   "Damage": 100,
   "Type": "Basic"
  },
  {
-  "Waffe": "Wild magic",
+  "Waffe": "Primordial",
   "Distance": "Any",
   "Name": "Small Spike",
   "Effect": "None",
@@ -722,7 +741,7 @@
   "Type": "Basic"
  },
  {
-  "Waffe": "Wild magic",
+  "Waffe": "Primordial",
   "Distance": "Any",
   "Name": "Small Meteor",
   "Effect": "None",
@@ -741,7 +760,7 @@
   "Type": "Basic"
  },
  {
-  "Waffe": "Wild magic",
+  "Waffe": "Primordial",
   "Distance": "Any",
   "Name": "Small Stream",
   "Effect": "None",
@@ -760,7 +779,7 @@
   "Type": "Basic"
  },
  {
-  "Waffe": "Wild magic",
+  "Waffe": "Primordial",
   "Distance": "Any",
   "Name": "Small Crescent",
   "Effect": "None",
@@ -779,7 +798,7 @@
   "Type": "Basic"
  },
  {
-  "Waffe": "Wild magic",
+  "Waffe": "Primordial",
   "Distance": "Any",
   "Name": "Big Spike",
   "Effect": "None",
@@ -798,7 +817,7 @@
   "Type": "Basic"
  },
  {
-  "Waffe": "Wild magic",
+  "Waffe": "Primordial",
   "Distance": "Any",
   "Name": "Large Meteor",
   "Effect": "None",
@@ -817,7 +836,7 @@
   "Type": "Basic"
  },
  {
-  "Waffe": "Wild magic",
+  "Waffe": "Primordial",
   "Distance": "Any",
   "Name": "Big Stream",
   "Effect": "None",
@@ -836,7 +855,7 @@
   "Type": "Basic"
  },
  {
-  "Waffe": "Wild magic",
+  "Waffe": "Primordial",
   "Distance": "Any",
   "Name": "Big Crescent",
   "Effect": "None",
@@ -855,7 +874,7 @@
   "Type": "Basic"
  },
  {
-  "Waffe": "Wild magic",
+  "Waffe": "Primordial",
   "Distance": "Any",
   "Name": "Small Ring",
   "Effect": "None",
@@ -874,7 +893,7 @@
   "Type": "Basic"
  },
  {
-  "Waffe": "Wild magic",
+  "Waffe": "Primordial",
   "Distance": "Any",
   "Name": "Great Ring",
   "Effect": "None",
@@ -893,7 +912,7 @@
   "Type": "Basic"
  },
  {
-  "Waffe": "Wild magic",
+  "Waffe": "Primordial",
   "Distance": "Any",
   "Name": "Small Curse",
   "Effect": "Decrease in coaxiality",
@@ -912,7 +931,7 @@
   "Type": "Basic"
  },
  {
-  "Waffe": "Wild magic",
+  "Waffe": "Primordial",
   "Distance": "Any",
   "Name": "Big Curse",
   "Effect": "Significant decrease in coaxiality",
@@ -931,7 +950,7 @@
   "Type": "Basic"
  },
  {
-  "Waffe": "Wild magic",
+  "Waffe": "Primordial",
   "Distance": "Any",
   "Name": "Small Fidget",
   "Effect": "Chain Reaction",
@@ -950,7 +969,7 @@
   "Type": "Basic"
  },
  {
-  "Waffe": "Wild magic",
+  "Waffe": "Primordial",
   "Distance": "Any",
   "Name": "Big Fidget",
   "Effect": "Chain Reaction",

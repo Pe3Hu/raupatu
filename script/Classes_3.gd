@@ -20,7 +20,7 @@ class Anker:
 	func init_scene() -> void:
 		scene.myself = Global.scene.anker.instantiate()
 		scene.myself.position = obj.pfeiler.vec.grid+Vector3(0.5,0,0.5)#y=2.5
-		Global.node.game.get_node("Ankers").add_child(scene.myself)
+		Global.node.game.get_node("Bienenstock/Ankers").add_child(scene.myself)
 		var color = null
 		var mesh = scene.myself.get_node("MeshSphere").mesh
 		mesh.material = mesh.material.duplicate()
@@ -61,7 +61,7 @@ class Fehler:
 
 	func init_scene() -> void:
 		scene.myself = Global.scene.fehler.instantiate()
-		Global.node.game.get_node("Fehlers").add_child(scene.myself)
+		Global.node.game.get_node("Bienenstock/Fehlers").add_child(scene.myself)
 		update_color()
 		get_emlbem()
 		scene.myself.visible = false
@@ -176,7 +176,7 @@ class Pfeiler:
 				color.plane = Color.WHITE
 		
 		mesh.plane.mesh.material.albedo_color = color.plane
-		Global.node.game.get_node("Pfeilers").add_child(mesh.plane)
+		Global.node.game.get_node("Bienenstock/Pfeilers").add_child(mesh.plane)
 
 
 	func add_fehler(fehler_) -> void:
@@ -323,7 +323,7 @@ class Bienenstock:
 		types["flesh"] = 3
 		types["speed"] = 5
 		
-		var n = 10
+		var n = 100
 		
 		#for type in types.keys():
 		#	for _i in types[type]:

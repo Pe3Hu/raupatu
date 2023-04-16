@@ -31,8 +31,9 @@ func set_labels(parent_):
 	
 	label_dict["Layer"] = label_dict["Layer"].replace(" in a stack", "")
 	label_dict["Coverage"] = label_dict["Coverage"].replace("-", " ")
-	var damage_bot = floor(parent_.obj.waffe.num.damage.bot*int(label_dict["Damage"])/100)
-	var damage_top = floor(parent_.obj.waffe.num.damage.top*int(label_dict["Damage"])/100)
+	var waffe = parent_.obj.waffe
+	var damage_bot = floor(waffe.num.damage.bot*int(label_dict["Damage"])/100)
+	var damage_top = floor(waffe.num.damage.top*int(label_dict["Damage"])/100)
 	label_dict["Damage"] = str(damage_bot)+"-"+str(damage_top)
 	
 	for name_ in label_dict.keys():

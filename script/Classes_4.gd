@@ -38,21 +38,16 @@ class Kacheln:
 		mesh.plane = MeshInstance3D.new()
 		mesh.plane.mesh = PlaneMesh.new()
 		mesh.plane.mesh.size = Vector2(1,1)
-		mesh.plane.position = Global.node.spielautomat.position
-		mesh.plane.mesh.center_offset = Global.vec.shift.spielautomat
 		mesh.plane.mesh.center_offset.y += num.order.current-(Global.num.pielautomat.height+1)/2
 		mesh.plane.mesh.center_offset.x += obj.rolle.num.col-Global.num.pielautomat.width/2
 		
 		var material = StandardMaterial3D.new()
-		#material.vertex_color_use_as_albedo = true
 		mesh.plane.mesh.surface_set_material(0, material)  
 		var color = Color.SLATE_GRAY
 		mesh.plane.mesh.material.albedo_color = color
-	
 		mesh.plane.mesh.set_orientation(2)
 		mesh.plane.set_cast_shadows_setting(0)
-		mesh.plane.rotation = Global.node.camera.rotation
-		obj.spielautomat.scene.myself.add_child(mesh.plane)
+		Global.node.kachelns.add_child(mesh.plane)
 
 
 	func init_sprite() -> void:
@@ -190,6 +185,7 @@ class Spielautomat:
 	func init_scene() -> void:
 		scene.myself = Global.scene.spielautomat.instantiate()
 		Global.node.game.add_child(scene.myself)
+		#scene.myself.visible = false
 
 
 	func init_rolles() -> void:

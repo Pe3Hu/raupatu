@@ -1,15 +1,100 @@
-[gd_scene load_steps=18 format=3 uid="uid://dpq0g6jrlkuea"]
+[gd_scene load_steps=30 format=3 uid="uid://dpq0g6jrlkuea"]
 
 [ext_resource type="Script" path="res://scene/game/Game.gd" id="1_35sda"]
-[ext_resource type="Texture2D" uid="uid://bb8p572r518uj" path="res://asset/png/emblem/strip_h/0/30.png" id="2_n7m2n"]
-[ext_resource type="PackedScene" uid="uid://dn2vorjfhyu7y" path="res://scene/5/aktion/Aktion.tscn" id="2_vxnm4"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hdolg"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fpaxj"]
+albedo_color = Color(0, 0, 0, 1)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_h5n63"]
-material = SubResource("StandardMaterial3D_hdolg")
-size = Vector2(7, 5)
-center_offset = Vector3(3.5, 2.5, 0)
+[sub_resource type="PlaneMesh" id="PlaneMesh_vbvrb"]
+material = SubResource("StandardMaterial3D_fpaxj")
+size = Vector2(11, 2)
+center_offset = Vector3(0, 0, -0.002)
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jg7mp"]
+albedo_color = Color(0.0156863, 0.0156863, 0.929412, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_hvbgr"]
+material = SubResource("StandardMaterial3D_jg7mp")
+size = Vector2(7, 1.6)
+center_offset = Vector3(-1.8, 0, -0.001)
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8srv6"]
+albedo_color = Color(0.588235, 0, 0.215686, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_sa60a"]
+material = SubResource("StandardMaterial3D_8srv6")
+size = Vector2(3.4, 1.6)
+center_offset = Vector3(3.6, 0, -0.001)
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_266ub"]
+albedo_color = Color(0.0156863, 0.0156863, 0.0156863, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jqfoo"]
+material = SubResource("StandardMaterial3D_266ub")
+size = Vector2(6, 5)
+center_offset = Vector3(0, 0, -0.001)
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3iwwj"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_101gp"]
+material = SubResource("StandardMaterial3D_3iwwj")
+size = Vector2(0.5, 5)
+center_offset = Vector3(2.75, 0, 0.001)
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kbby5"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_dkrs5"]
+material = SubResource("StandardMaterial3D_kbby5")
+size = Vector2(0.5, 5)
+center_offset = Vector3(-2.75, 0, 0.001)
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_il0hw"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_mou56"]
+material = SubResource("StandardMaterial3D_il0hw")
+size = Vector2(5, 1)
+center_offset = Vector3(0, 2, 0.001)
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6srl8"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_8y0sl"]
+material = SubResource("StandardMaterial3D_6srl8")
+size = Vector2(5, 1)
+center_offset = Vector3(0, -2, 0.001)
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yqdhb"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_118rj"]
+material = SubResource("StandardMaterial3D_yqdhb")
+size = Vector2(0.23, 0.001)
+center_offset = Vector3(0, 0, -0.1)
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x1oj2"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ovmw8"]
+material = SubResource("StandardMaterial3D_x1oj2")
+size = Vector2(0.23, 0.001)
+center_offset = Vector3(0, -0.026, -0.1)
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4rb5s"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gp6fc"]
+material = SubResource("StandardMaterial3D_4rb5s")
+size = Vector2(0.001, 0.153)
+center_offset = Vector3(0, 0, -0.1)
 orientation = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vlb2j"]
@@ -20,48 +105,100 @@ size = Vector2(3, 5)
 center_offset = Vector3(0, 2.5, 1.5)
 orientation = 0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_266ub"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_asp6w"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_jqfoo"]
-material = SubResource("StandardMaterial3D_266ub")
+[sub_resource type="PlaneMesh" id="PlaneMesh_8ojs5"]
+material = SubResource("StandardMaterial3D_asp6w")
+size = Vector2(7, 3)
+center_offset = Vector3(3.5, -0.001, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hdolg"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_h5n63"]
+material = SubResource("StandardMaterial3D_hdolg")
 size = Vector2(7, 5)
-center_offset = Vector3(-3, 0, -6.1)
-orientation = 2
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3iwwj"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_101gp"]
-material = SubResource("StandardMaterial3D_3iwwj")
-size = Vector2(1, 5)
-center_offset = Vector3(-6, 0, -5.999)
-orientation = 2
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kbby5"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_dkrs5"]
-material = SubResource("StandardMaterial3D_kbby5")
-size = Vector2(1, 5)
-center_offset = Vector3(0, 0, -5.999)
-orientation = 2
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_il0hw"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_mou56"]
-material = SubResource("StandardMaterial3D_il0hw")
-size = Vector2(5, 1)
-center_offset = Vector3(-3, 2, -5.997)
-orientation = 2
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6srl8"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_8y0sl"]
-material = SubResource("StandardMaterial3D_6srl8")
-size = Vector2(5, 1)
-center_offset = Vector3(-3, -2, -5.997)
+center_offset = Vector3(3.5, 2.5, 0)
 orientation = 2
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_35sda")
+
+[node name="Camera" type="Node3D" parent="."]
+transform = Transform3D(0.5, -0.224144, 0.836516, 0, 0.965926, 0.258819, -0.866025, -0.12941, 0.482963, 8.6, 2.2, 8)
+
+[node name="AktionPanel" type="Node3D" parent="Camera"]
+transform = Transform3D(1, -1.36594e-07, 5.96046e-07, 1.36594e-07, 1, -2.48353e-08, -5.96046e-07, 2.48354e-08, 1, 0, -2.75, -5.25)
+
+[node name="Aktions" type="Node3D" parent="Camera/AktionPanel"]
+transform = Transform3D(1, -1.49012e-08, 0, 0, 1, 0, 0, -7.45058e-09, 1, 0, 2.38419e-07, 0)
+
+[node name="BG" type="MeshInstance3D" parent="Camera/AktionPanel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.01)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_vbvrb")
+skeleton = NodePath("../../..")
+
+[node name="BGWaffe" type="MeshInstance3D" parent="Camera/AktionPanel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.01)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_hvbgr")
+skeleton = NodePath("../../..")
+
+[node name="BGWild" type="MeshInstance3D" parent="Camera/AktionPanel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.01)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_sa60a")
+skeleton = NodePath("../../..")
+
+[node name="Spielautomat" type="Node3D" parent="Camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.5, -5.25)
+
+[node name="Kachelns" type="Node3D" parent="Camera/Spielautomat"]
+transform = Transform3D(1, 7.45058e-09, -2.98023e-08, -7.45058e-09, 1, -3.72529e-09, 0, -3.72529e-09, 1, 0, 0, 0)
+
+[node name="BG" type="MeshInstance3D" parent="Camera/Spielautomat"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.01)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_jqfoo")
+skeleton = NodePath("../../..")
+
+[node name="Left" type="MeshInstance3D" parent="Camera/Spielautomat"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_101gp")
+
+[node name="Right" type="MeshInstance3D" parent="Camera/Spielautomat"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_dkrs5")
+
+[node name="Top" type="MeshInstance3D" parent="Camera/Spielautomat"]
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_mou56")
+
+[node name="Bot" type="MeshInstance3D" parent="Camera/Spielautomat"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_8y0sl")
+
+[node name="Camera3D" type="Camera3D" parent="Camera"]
+current = true
+
+[node name="PlaneZ0" type="MeshInstance3D" parent="Camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+visible = false
+mesh = SubResource("PlaneMesh_118rj")
+skeleton = NodePath("../..")
+
+[node name="PlaneZ1" type="MeshInstance3D" parent="Camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("PlaneMesh_ovmw8")
+skeleton = NodePath("../..")
+
+[node name="PlaneX0" type="MeshInstance3D" parent="Camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("PlaneMesh_gp6fc")
+skeleton = NodePath("../..")
 
 [node name="FPS" type="Label" parent="."]
 offset_right = 40.0
@@ -71,60 +208,23 @@ offset_bottom = 23.0
 transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 3.51502, 4.6877, 5.66309)
 shadow_enabled = true
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.5, -0.224144, 0.836516, 0, 0.965926, 0.258819, -0.866025, -0.12941, 0.482963, 9, 3.5, 8)
-current = true
+[node name="Bienenstock" type="Node3D" parent="."]
 
-[node name="PlaneZ" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_h5n63")
+[node name="Pfeilers" type="Node3D" parent="Bienenstock"]
 
-[node name="Pfeilers" type="Node3D" parent="."]
+[node name="Ankers" type="Node3D" parent="Bienenstock"]
 
-[node name="Fehlers" type="Node3D" parent="."]
+[node name="Fehlers" type="Node3D" parent="Bienenstock"]
 
-[node name="Ankers" type="Node3D" parent="."]
-
-[node name="Aktions" type="Node3D" parent="."]
-transform = Transform3D(0.15, -0.0672432, 0.250955, 0, 0.289778, 0.0776457, -0.259808, -0.0388229, 0.144889, 7.4, 2.2, 8.6)
-
-[node name="PlaneX" type="MeshInstance3D" parent="."]
+[node name="PlaneX" type="MeshInstance3D" parent="Bienenstock"]
 mesh = SubResource("PlaneMesh_7q6mj")
-
-[node name="Aktion" parent="." instance=ExtResource("2_vxnm4")]
-transform = Transform3D(0.15, -0.0672432, 0.250955, 0, 0.289778, 0.0776457, -0.259808, -0.0388229, 0.144889, 7.4, 2.2, 8.6)
-visible = false
-
-[node name="test" type="Sprite3D" parent="."]
-transform = Transform3D(0.5, -0.224144, 0.836516, 0, 0.965926, 0.258819, -0.866025, -0.12941, 0.482963, 6.5165, 3.5, 5.36148)
-visible = false
-cast_shadow = 0
-texture = ExtResource("2_n7m2n")
-
-[node name="Spielautomat" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 5.5, 8.15)
-
-[node name="BG" type="MeshInstance3D" parent="Spielautomat"]
-transform = Transform3D(0.5, -0.224144, 0.836516, 0, 0.965926, 0.258819, -0.866025, -0.12941, 0.482963, 0, 0, 0)
-cast_shadow = 0
-mesh = SubResource("PlaneMesh_jqfoo")
 skeleton = NodePath("../..")
 
-[node name="Left" type="MeshInstance3D" parent="Spielautomat"]
-transform = Transform3D(0.5, -0.224144, 0.836516, 0, 0.965926, 0.258819, -0.866025, -0.12941, 0.482963, 0, 0, 0)
-cast_shadow = 0
-mesh = SubResource("PlaneMesh_101gp")
+[node name="PlaneY" type="MeshInstance3D" parent="Bienenstock"]
+visible = false
+mesh = SubResource("PlaneMesh_8ojs5")
+skeleton = NodePath("../..")
 
-[node name="Right" type="MeshInstance3D" parent="Spielautomat"]
-transform = Transform3D(0.5, -0.224144, 0.836516, 0, 0.965926, 0.258819, -0.866025, -0.12941, 0.482963, 0, 0, 0)
-cast_shadow = 0
-mesh = SubResource("PlaneMesh_dkrs5")
-
-[node name="Top" type="MeshInstance3D" parent="Spielautomat"]
-transform = Transform3D(0.5, -0.224144, 0.836516, 0, 0.965926, 0.258819, -0.866025, -0.12941, 0.482963, 0, 0, 0)
-cast_shadow = 0
-mesh = SubResource("PlaneMesh_mou56")
-
-[node name="Bot" type="MeshInstance3D" parent="Spielautomat"]
-transform = Transform3D(0.5, -0.224144, 0.836516, 0, 0.965926, 0.258819, -0.866025, -0.12941, 0.482963, 0, 0, 0)
-cast_shadow = 0
-mesh = SubResource("PlaneMesh_8y0sl")
+[node name="PlaneZ" type="MeshInstance3D" parent="Bienenstock"]
+mesh = SubResource("PlaneMesh_h5n63")
+skeleton = NodePath("../..")
