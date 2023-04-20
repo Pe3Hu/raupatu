@@ -8,10 +8,11 @@ func _ready() -> void:
 	Global.obj.spielautomat = Classes_4.Spielautomat.new()
 	Global.obj.hexenzirkel = Classes_5.Hexenzirkel.new()
 #	datas.sort_custom(func(a, b): return a.value > b.value)
-	set_camers()
+	set_camera()
+	next_turn()
 
 
-func set_camers() -> void:
+func set_camera() -> void:
 	var width = Global.num.saal.width
 	var half_width = float(width)/2
 	var camera = get_node("/root/Game/Camera")
@@ -41,8 +42,17 @@ func _input(event) -> void:
 			KEY_SPACE:
 				if event.pressed:
 					Global.obj.spielautomat.next_turn()
-	
 
+
+func next_turn() -> void:
+	if Global.obj.hexenzirkel.flag.end_turn:
+		Global.obj.hexenzirkel.flag.end_turn = false
+		Global.obj.bienenstock.clean_ankers()
+		Global.obj.spielautomat.rolles_roll()
+		
+		Global.obj.bienenstock.add_ankers()
+		
+		Global.obj.hexenzirkel.zauberers_turn()
 
 func _process(delta_) -> void:
 	$FPS.text = str(Engine.get_frames_per_second())

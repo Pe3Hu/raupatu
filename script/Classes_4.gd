@@ -208,14 +208,10 @@ class Spielautomat:
 		#obj.saal = Classes_4.Saal.new(input)
 
 
-	func next_turn() -> void:
-		Global.obj.bienenstock.clean_ankers()
-		
+	func rolles_roll() -> void:
 		for rolle in arr.rolle:
 			rolle.roll()
-		
-		if !Global.obj.bienenstock.flag.end:
-			Global.obj.bienenstock.add_ankers()
+			
 
 
 	func remove_fehler_after_boom(fehler_) -> void:

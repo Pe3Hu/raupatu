@@ -1,10 +1,39 @@
 extends Node
 
 
+#Мозг
+class Gehirn:
+	var obj ={}
+
+
+	func _init(input_) -> void:
+		obj.zauberer = input_.zauberer
+
+
+	func evaluate_aktions() -> void:
+		var aktions = obj.zauberer.get_aktions()
+		var ankers = []
+		ankers.append_array(Global.obj.bienenstock.obj.saal.arr.anker)
+		var versions = []
+		
+		for anker in ankers:
+			for fehler in Global.obj.bienenstock.arr.fehler:
+				if fehler.vec.grid != null:
+					var d = Global.get_manhattan_distance(anker.obj.pfeiler.vec.grid,fehler.vec.grid)
+					
+					for aktion in aktions:
+						if d >= aktion.num.parameter["Minimal range"] && d <= aktion.num.parameter["Maximum range"]:
+							var version = {}
+							version.fehler = fehler
+							version.anker = anker
+							version.aktion = aktion
+							versions.append(version)
+
+
 #Волшебник
 class Zauberer:
 	var word = {}
-	var arr ={}
+	var arr = {}
 	var obj = {}
 	var flag = {}
 
@@ -13,10 +42,17 @@ class Zauberer:
 		obj.hexenzirkel = input_.hexenzirkel
 		obj.waffe = null
 		flag.current = false
+		init_gehirn()
 		start_waffe()
 		start_primordial()
 		flag.current = true
 		add_waffe_aktions_on_screen()
+
+
+	func init_gehirn() -> void:
+		var input = {}
+		input.zauberer = self
+		obj.gehirn = Classes_5.Gehirn.new(input)
 
 
 	func start_waffe() -> void:
@@ -56,7 +92,7 @@ class Zauberer:
 		arr.primordial.append(aktion)
 
 
-	func add_primordial_on_screen() -> void:
+	func add_primordial_aktions_on_screen() -> void:
 		for _i in arr.primordial.size():
 			var node = arr.primordial[_i].scene.myself
 			Global.node.aktions.add_child(node)
@@ -66,16 +102,32 @@ class Zauberer:
 	func add_waffe_aktions_on_screen() -> void:
 		if flag.current:
 			obj.waffe.add_aktions_on_screen()
-			add_primordial_on_screen()
+			add_primordial_aktions_on_screen()
+
+
+	func get_aktions() -> Array:
+		var aktions = []
+		aktions.append_array(arr.primordial)
+		aktions.append_array(obj.waffe.arr.aktion)
+		return aktions
+
+
+	func get_plans() -> Array:
+		var plans = []
+		obj.gehirn.evaluate_aktions()
+		return plans
+
 
 
 #Ковен
 class Hexenzirkel:
-	var arr ={}
+	var arr = {}
+	var flag = {}
 
 
 	func _init() -> void:
 		init_zauberers()
+		flag.end_turn = true
 
 
 	func init_zauberers() -> void:
@@ -87,3 +139,12 @@ class Hexenzirkel:
 			input.hexenzirkel = self
 			var zauberer = Classes_5.Zauberer.new(input)
 			arr.zauberer.append(zauberer)
+
+
+	func zauberers_turn() -> void:
+		var plans = {}
+		
+		for zauberer in arr.zauberer:
+			plans[zauberer] = zauberer.get_plans()
+		
+

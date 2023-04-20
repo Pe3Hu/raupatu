@@ -279,3 +279,11 @@ func load_data(path_: String):
 	var json_object = JSON.new()
 	var parse_err = json_object.parse(text)
 	return json_object.get_data()
+
+
+func get_manhattan_distance(a_: Vector3, b_: Vector3) -> int:
+	var d = 0
+	d += abs(a_.x-b_.x)
+	d += abs(a_.y-b_.y)
+	d += abs(a_.z-b_.z)
+	return d

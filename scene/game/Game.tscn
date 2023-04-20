@@ -163,12 +163,10 @@ mesh = SubResource("PlaneMesh_jqfoo")
 skeleton = NodePath("../../..")
 
 [node name="Left" type="MeshInstance3D" parent="Camera/Spielautomat"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_101gp")
 
 [node name="Right" type="MeshInstance3D" parent="Camera/Spielautomat"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_dkrs5")
 
@@ -177,7 +175,6 @@ cast_shadow = 0
 mesh = SubResource("PlaneMesh_mou56")
 
 [node name="Bot" type="MeshInstance3D" parent="Camera/Spielautomat"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_8y0sl")
 
@@ -185,22 +182,20 @@ mesh = SubResource("PlaneMesh_8y0sl")
 current = true
 
 [node name="PlaneZ0" type="MeshInstance3D" parent="Camera"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 visible = false
 mesh = SubResource("PlaneMesh_118rj")
 skeleton = NodePath("../..")
 
 [node name="PlaneZ1" type="MeshInstance3D" parent="Camera"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("PlaneMesh_ovmw8")
 skeleton = NodePath("../..")
 
 [node name="PlaneX0" type="MeshInstance3D" parent="Camera"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("PlaneMesh_gp6fc")
 skeleton = NodePath("../..")
 
 [node name="FPS" type="Label" parent="."]
+visible = false
 offset_right = 40.0
 offset_bottom = 23.0
 

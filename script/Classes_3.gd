@@ -44,6 +44,7 @@ class Anker:
 class Fehler:
 	var num = {}
 	var word = {}
+	var vec = {}
 	var obj = {}
 	var scene = {}
 	var color = {}
@@ -56,6 +57,7 @@ class Fehler:
 		obj.bienenstock = input_.bienenstock
 		obj.saal = obj.bienenstock.obj.saal
 		obj.pfeiler = null
+		vec.grid = null
 		init_scene()
 
 
@@ -68,9 +70,12 @@ class Fehler:
 
 
 	func update_position() -> void:
+		var y = obj.pfeiler.arr.fehler.find(self)
 		var position = obj.pfeiler.vec.grid
-		position.y += obj.pfeiler.arr.fehler.find(self)*0.5
+		position.y += y*0.5
 		scene.myself.set_position(position)
+		vec.grid = obj.pfeiler.vec.grid
+		vec.grid.y += y
 
 
 	func update_color() -> void:
@@ -297,7 +302,7 @@ class Bienenstock:
 
 
 	func _init() -> void:
-		flag.end = false
+		flag.end_game = false
 		arr.trophy = []
 		init_saal()
 		init_fehlers()
@@ -323,7 +328,7 @@ class Bienenstock:
 		types["flesh"] = 3
 		types["speed"] = 5
 		
-		var n = 100
+		var n = 20
 		
 		#for type in types.keys():
 		#	for _i in types[type]:
@@ -337,53 +342,54 @@ class Bienenstock:
 
 
 	func add_ankers() -> void:
-		var types = []
-		types.append_array(Global.dict.anker.type)
-		types.shuffle()
-		var pfeilers = obj.saal.get_free_pfeilers()
-		var datas = []
-		
-		for pfeiler in pfeilers:
-			var data = {}
-			data.pfeiler = pfeiler
-			data.distance = pfeiler.num.far_away
-			datas.append(data)
-		
-		datas.sort_custom(func(a, b): return a.distance < b.distance)
-		
-		for type in types:
-			var options = []
+		if !flag.end_game:
+			var types = []
+			types.append_array(Global.dict.anker.type)
+			types.shuffle()
+			var pfeilers = obj.saal.get_free_pfeilers()
+			var datas = []
 			
-			for data in datas:
-				var pfeiler = data.pfeiler
-				var n = 0
+			for pfeiler in pfeilers:
+				var data = {}
+				data.pfeiler = pfeiler
+				data.distance = pfeiler.num.far_away
+				datas.append(data)
 			
-				match type:
-					"introvert":
-						n = pfeiler.num.far_away-1
-					"extrovert":
-						n = datas[0].distance-pfeiler.num.far_away+1
-					"chaotic":
-						n = 1
+			datas.sort_custom(func(a, b): return a.distance < b.distance)
 			
-				for _i in n:
-					options.append(pfeiler)
-			
-			if options.size() > 0:
-				var pfeiler = Global.get_random_element(options)
-				var input = {}
-				input.type = type
-				input.pfeiler = pfeiler
-				input.bienenstock = self
-				var anker = Classes_3.Anker.new(input)
-				obj.saal.arr.anker.append(anker)
+			for type in types:
+				var options = []
 				
 				for data in datas:
-					if data.pfeiler == pfeiler:
-						datas.erase(data)
-						break
+					var pfeiler = data.pfeiler
+					var n = 0
 				
-				datas.sort_custom(func(a, b): return a.distance < b.distance)
+					match type:
+						"introvert":
+							n = pfeiler.num.far_away-1
+						"extrovert":
+							n = datas[0].distance-pfeiler.num.far_away+1
+						"chaotic":
+							n = 1
+				
+					for _i in n:
+						options.append(pfeiler)
+				
+				if options.size() > 0:
+					var pfeiler = Global.get_random_element(options)
+					var input = {}
+					input.type = type
+					input.pfeiler = pfeiler
+					input.bienenstock = self
+					var anker = Classes_3.Anker.new(input)
+					obj.saal.arr.anker.append(anker)
+					
+					for data in datas:
+						if data.pfeiler == pfeiler:
+							datas.erase(data)
+							break
+					
+					datas.sort_custom(func(a, b): return a.distance < b.distance)
 
 
 	func clean_ankers() -> void:
